@@ -1,0 +1,20 @@
+#guess {
+    margin: 5%;
+}
+
+#guess > table > tbody > tr > td {
+    border-bottom: 1px solid black;
+    width: 20px;
+    text-align: center;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+
+#guess {
+    color: red;
+}
+
+#life > img {
+    height: 22px;
+    widows: 22px;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <h1>l'impiccato</h1>
+    <div id="life"></div>
+    <h2>inserisci la tua parola</h2>
+    <input type="password" id="insertWord">
+    <button onclick="takeWord()">invio</button>
+    <div id="guess"></div>
+    <hr>
+    <input type="text" id="inputGuess" maxlength="1">
+    <button id="sendLetter" onclick="guessWord()">inserisci lettera</button>
+    <h2>hai già usato queste lettere</h2>
+    <div id="usedLetters"></div>
+
+
+
+    <script src="./scriptino.js"></script>
+</body>
+</html>
