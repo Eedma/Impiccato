@@ -1,5 +1,6 @@
 let solutionValue = document.getElementById('insertWord');
 let guessWord = document.getElementById('guess');
+let letter = document.getElementById('inputGuess');
 let solution = [];
 let copySolution = [];
 let heart = '<img src = "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/microsoft/209/heavy-black-heart_2764.png">';
@@ -16,14 +17,12 @@ setLifes()
 
 takeWord = () => {
     solution = solutionValue.value.split('');
-    copySolution = [...solution];;
+    copySolution = [...solution];
     for (let j = 1; j < copySolution.length - 1; ++j) {
         copySolution[j] = ' ';
     }
-    //console.log(copySolution)
     buildWord(copySolution, solution)
     solutionValue.value = '';
-    //guessWord(solution, copySolution);
 }
 
 buildWord = (copySolution, solution) => {
@@ -32,8 +31,7 @@ buildWord = (copySolution, solution) => {
     for (let i = 0; i < copySolution.length; ++i) {
         table += `<td>${copySolution[i]}</td>`;
     }
-
-    //console.log('work');
+    
     table += '</tr></table>';
     document.getElementById('guess').innerHTML = table;
     console.log('copysolution :' + copySolution)
@@ -47,23 +45,28 @@ buildWord = (copySolution, solution) => {
 
 guessWord = () => {
     document.getElementById('usedLetters').innerHTML = '';
-    let letter = document.getElementById('inputGuess').value;
-    usedLetters.push(letter);
-    document.getElementById('usedLetters').innerHTML = usedLetters;
-    let index = [];
-    for (let i = 0; i < solution.length; i++) {
-        if (solution[i] == letter) {
-            index.push(i);
+    if (!usedLetters.includes(letter.value)){
+        usedLetters.push(letter.value);document.getElementById('usedLetters').innerHTML = usedLetters;
+        let index = [];
+        for (let i = 0; i < solution.length; i++) {
+            if (solution[i] === letter.value) {
+                index.push(i);
+            }
         }
+        if (index.length != 0) {
+            for (let x = 0; x < index.length; x++) {
+                copySolution[index[x]] = solution[index[x]];
+            }
+            buildWord(copySolution, solution);
+        } else{
+            handleErrors()
+        }
+
+    } else {
+        alert('hai già inserito questa lettera!')
     }
-    if (index.length != 0) {
-        for (let x = 0; x < index.length; x++) {
-            copySolution[index[x]] = solution[index[x]];
-        }
-        buildWord(copySolution, solution);
-    } else{
-        handleErrors()
-    } 
+    
+    letter.value = '';
 }
 
 handleErrors = () => {
@@ -72,6 +75,5 @@ handleErrors = () => {
     if (lifes.length === 0){
         document.body.innerHTML = '';
         document.body.innerHTML = 'YOU LOSE!';
-        //console.log('?');
     }
 }
